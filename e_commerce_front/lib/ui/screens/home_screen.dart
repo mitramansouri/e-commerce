@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:e_commerce_front/ui/widgets/product_single.dart';
+import 'package:e_commerce_front/ui/widgets/testemonial_single.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -79,6 +80,27 @@ class _HomeScreenState extends State<HomeScreen> {
       'title': 'Candle3',
       'picture': 'assets/pictures/candle3.png',
       'price': '9.99'
+    },
+  ];
+
+  final List<Map<String, dynamic>> testimonials = [
+    {
+      'profilePicture': 'assets/pictures/profilepic.jpg',
+      'name': 'John Doe',
+      'review': 'Great service and friendly staff!',
+      'rating': 5,
+    },
+    {
+      'profilePicture': 'assets/pictures/profilepic2.jpg',
+      'name': 'Jane Smith',
+      'review': 'Good experience overall.',
+      'rating': 4,
+    },
+    {
+      'profilePicture': 'assets/pictures/profilepic3.jpg',
+      'name': 'Sam Wilson',
+      'review': 'Could be better, but satisfied.',
+      'rating': 3,
     },
   ];
   String? selectedValue;
@@ -292,8 +314,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   // product part
-                  const SizedBox(height: 20.0,),
-                  const Text('Products', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  const Text(
+                    'Products',
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  ),
                   const Text('Order it for you or for your beloved ones '),
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -415,6 +443,56 @@ class _HomeScreenState extends State<HomeScreen> {
                               AssetImage('assets/pictures/clean-and-wax.png'),
                           width: 300,
                           height: 300,
+                        ),
+                      ],
+                    ),
+                  ),
+                  // testemonial
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    width: MediaQuery.of(context).size.width,
+                    color: const Color(0xff56B280).withOpacity(0.1),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        const Text(
+                          'Testemonial',
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.bold),
+                        ),
+                        const Text('Some quotes from our happy customers'),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: 250,
+                          child: PageView.builder(
+                            controller: PageController(
+                                viewportFraction:
+                                    0.7), // Show more than one item
+                            scrollDirection: Axis
+                                .horizontal, // Set scroll direction to vertical
+                            itemCount: testimonials.length,
+                            itemBuilder: (context, index) {
+                              final testimonial = testimonials[index];
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: TestemonialSingle(
+                                    name: testimonial['name'],
+                                    review: testimonial['review'],
+                                    rating: testimonial['rating'],
+                                    profilePicture:
+                                        testimonial['profilePicture'],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ],
                     ),
