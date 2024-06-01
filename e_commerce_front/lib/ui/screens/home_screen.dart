@@ -1,7 +1,9 @@
 import 'dart:ui';
 
+import 'package:e_commerce_front/ui/widgets/product_single.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,6 +27,59 @@ class _HomeScreenState extends State<HomeScreen> {
     'Item6',
     'Item7',
     'Item8',
+  ];
+
+  final List<Map<String, dynamic>> products = [
+    {
+      'title': 'Candle1',
+      'picture': 'assets/pictures/candle1.png',
+      'price': '9.99'
+    },
+    {
+      'title': 'Candle2',
+      'picture': 'assets/pictures/candle2.png',
+      'price': '9.99'
+    },
+    {
+      'title': 'Candle3',
+      'picture': 'assets/pictures/candle3.png',
+      'price': '9.99'
+    },
+    {
+      'title': 'Candle1',
+      'picture': 'assets/pictures/candle1.png',
+      'price': '9.99'
+    },
+    {
+      'title': 'Candle1',
+      'picture': 'assets/pictures/candle1.png',
+      'price': '9.99'
+    },
+    {
+      'title': 'Candle1',
+      'picture': 'assets/pictures/candle1.png',
+      'price': '9.99'
+    },
+    {
+      'title': 'Candle2',
+      'picture': 'assets/pictures/candle2.png',
+      'price': '9.99'
+    },
+    {
+      'title': 'Candle3',
+      'picture': 'assets/pictures/candle3.png',
+      'price': '9.99'
+    },
+    {
+      'title': 'Candle2',
+      'picture': 'assets/pictures/candle2.png',
+      'price': '9.99'
+    },
+    {
+      'title': 'Candle3',
+      'picture': 'assets/pictures/candle3.png',
+      'price': '9.99'
+    },
   ];
   String? selectedValue;
 
@@ -174,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // back ground image
+                  // back ground image part
                   Container(
                     height: MediaQuery.of(context).size.height * 0.5,
                     width: MediaQuery.of(context).size.width,
@@ -229,12 +284,139 @@ class _HomeScreenState extends State<HomeScreen> {
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ),
-                                
                               ],
                             ),
                           ),
                         );
                       },
+                    ),
+                  ),
+                  // product part
+                  const SizedBox(height: 20.0,),
+                  const Text('Products', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+                  const Text('Order it for you or for your beloved ones '),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: GridView.builder(
+                      physics:
+                          const NeverScrollableScrollPhysics(), // Disable GridView's own scrolling
+                      shrinkWrap: true,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4, // Number of columns
+                        mainAxisSpacing: 8.0, // Spacing between rows
+                        crossAxisSpacing: 8.0, // Spacing between columns
+                      ),
+                      itemCount: items.length,
+                      itemBuilder: (context, index) {
+                        return ProductSignle(
+                          title: products[index]['title'],
+                          picture: products[index]['picture'],
+                          price: products[index]['price'],
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 60.0,
+                  ),
+                  //clean and fragrant soy wax
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const SizedBox(
+                          width: 20.0,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Clean and fragrant soy wax',
+                              style: TextStyle(
+                                  fontSize: 30.0, fontWeight: FontWeight.bold),
+                            ),
+                            const Text(
+                              'Made for your home and for your wellness',
+                              style: TextStyle(
+                                  color: Colors.greenAccent, fontSize: 15.0),
+                            ),
+                            const Row(
+                              children: [
+                                Icon(Icons.check_circle_outline),
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Eco-sustainable:All recyclable materials, 0% CO2 emissions',
+                                    style: TextStyle(fontSize: 12.0),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Row(
+                              children: [
+                                Icon(Icons.check_circle_outline),
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Hyphoallergenic: 100% natural, human friendly ingredients.',
+                                    style: TextStyle(fontSize: 12.0),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Row(
+                              children: [
+                                Icon(Icons.check_circle_outline),
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Handmade: All candles are craftly made with love.',
+                                    style: TextStyle(fontSize: 12.0),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Row(
+                              children: [
+                                Icon(Icons.check_circle_outline),
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Long burning: No more waste. Created for last long.',
+                                    style: TextStyle(fontSize: 12.0),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.green,
+                                elevation: 12.0,
+                              ),
+                              child: const Text(
+                                'Learn More',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          width: 50.0,
+                        ),
+                        const Image(
+                          image:
+                              AssetImage('assets/pictures/clean-and-wax.png'),
+                          width: 300,
+                          height: 300,
+                        ),
+                      ],
                     ),
                   ),
                 ],
