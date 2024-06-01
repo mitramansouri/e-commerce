@@ -1,4 +1,8 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -170,7 +174,69 @@ class _HomeScreenState extends State<HomeScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  
+                  // back ground image
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/pictures/bg-image.png'),
+                          fit: BoxFit.cover),
+                    ),
+                    // nature candle and texts inside
+                    child: LayoutBuilder(
+                      builder:
+                          (BuildContext context, BoxConstraints constraints) {
+                        double parentHeight = constraints.maxHeight;
+                        double parentWidth = constraints.maxWidth;
+                        return Center(
+                          child: Container(
+                            color: Colors.white60,
+                            height: parentHeight * 0.7,
+                            width: parentWidth * 0.7,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Image(
+                                    image: AssetImage(
+                                        'assets/pictures/green-tea.png'),
+                                    height: 30,
+                                    width: 30,
+                                  ),
+                                ),
+                                const Text(
+                                  'The Nature Candle',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.all(20.0),
+                                  child: Text(
+                                      'All handmade with natural soy wax, Candleaf is a companion for all your pleasure moments '),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.green,
+                                    elevation: 12.0,
+                                  ),
+                                  child: const Text(
+                                    'Descovery our collection',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                                
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
