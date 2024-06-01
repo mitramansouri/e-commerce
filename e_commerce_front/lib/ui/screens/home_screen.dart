@@ -30,6 +30,23 @@ class _HomeScreenState extends State<HomeScreen> {
     'Item8',
   ];
 
+  final List<Map<String, dynamic>> popularProducts = [
+    {
+      'title': 'Candle1',
+      'picture': 'assets/pictures/candle1.png',
+      'price': '9.99'
+    },
+    {
+      'title': 'Candle2',
+      'picture': 'assets/pictures/candle2.png',
+      'price': '9.99'
+    },
+    {
+      'title': 'Candle3',
+      'picture': 'assets/pictures/candle3.png',
+      'price': '9.99'
+    },
+  ];
   final List<Map<String, dynamic>> products = [
     {
       'title': 'Candle1',
@@ -59,16 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'title': 'Candle1',
       'picture': 'assets/pictures/candle1.png',
-      'price': '9.99'
-    },
-    {
-      'title': 'Candle2',
-      'picture': 'assets/pictures/candle2.png',
-      'price': '9.99'
-    },
-    {
-      'title': 'Candle3',
-      'picture': 'assets/pictures/candle3.png',
       'price': '9.99'
     },
     {
@@ -323,26 +330,29 @@ class _HomeScreenState extends State<HomeScreen> {
                         TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                   const Text('Order it for you or for your beloved ones '),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: GridView.builder(
-                      physics:
-                          const NeverScrollableScrollPhysics(), // Disable GridView's own scrolling
-                      shrinkWrap: true,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4, // Number of columns
-                        mainAxisSpacing: 8.0, // Spacing between rows
-                        crossAxisSpacing: 8.0, // Spacing between columns
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: GridView.builder(
+                        physics:
+                            const NeverScrollableScrollPhysics(), // Disable GridView's own scrolling
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4, // Number of columns
+                          mainAxisSpacing: 8.0, // Spacing between rows
+                          crossAxisSpacing: 8.0, // Spacing between columns
+                        ),
+                        itemCount: products.length,
+                        itemBuilder: (context, index) {
+                          return ProductSignle(
+                            title: products[index]['title'],
+                            picture: products[index]['picture'],
+                            price: products[index]['price'],
+                          );
+                        },
                       ),
-                      itemCount: items.length,
-                      itemBuilder: (context, index) {
-                        return ProductSignle(
-                          title: products[index]['title'],
-                          picture: products[index]['picture'],
-                          price: products[index]['price'],
-                        );
-                      },
                     ),
                   ),
                   const SizedBox(
@@ -493,6 +503,164 @@ class _HomeScreenState extends State<HomeScreen> {
                               );
                             },
                           ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // popular product part
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  const Text(
+                    'Popular',
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  ),
+                  const Text('Our top selling product that you may like'),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: GridView.builder(
+                      physics:
+                          const NeverScrollableScrollPhysics(), // Disable GridView's own scrolling
+                      shrinkWrap: true,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3, // Number of columns
+                        mainAxisSpacing: 8.0, // Spacing between rows
+                        crossAxisSpacing: 8.0, // Spacing between columns
+                      ),
+                      itemCount: popularProducts.length,
+                      itemBuilder: (context, index) {
+                        return ProductSignle(
+                          title: popularProducts[index]['title'],
+                          picture: popularProducts[index]['picture'],
+                          price: popularProducts[index]['price'],
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 60.0,
+                  ),
+                  // footer
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.black87,
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        const Divider(),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    //candleaf icon
+                                    const SizedBox(
+                                      width: 20.0,
+                                    ),
+                                    SvgPicture.asset(
+                                      'assets/icons/candleaf-icon.svg',
+                                      width: 40.0, // Set the desired width
+                                      height: 40.0, // Set the desired height
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    // candleaf name icon
+                                    SvgPicture.asset(
+                                      'assets/icons/wordmark.svg',
+                                      width: 20.0, // Set the desired width
+                                      height: 20.0, // Set the desired height
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  width: 300,
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: const Text(
+                                    'Your natural candle made for your home and for your wellness.',
+                                    style: TextStyle(color: Colors.white60),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Discovery',
+                                  style: TextStyle(color: Colors.green),
+                                ),
+                                Text(
+                                  'New season',
+                                  style: TextStyle(color: Colors.white60),
+                                ),
+                                Text(
+                                  'Most searched',
+                                  style: TextStyle(color: Colors.white60),
+                                ),
+                                Text(
+                                  'Most selled',
+                                  style: TextStyle(color: Colors.white60),
+                                ),
+                              ],
+                            ),
+                            const Padding(
+                              padding:  EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Discovery',
+                                    style: TextStyle(color: Colors.green),
+                                  ),
+                                  Text(
+                                    'New season',
+                                    style: TextStyle(color: Colors.white60),
+                                  ),
+                                  Text(
+                                    'Most searched',
+                                    style: TextStyle(color: Colors.white60),
+                                  ),
+                                  Text(
+                                    'Most selled',
+                                    style: TextStyle(color: Colors.white60),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const Column(
+                              children: [
+                                Text(
+                                  'Discovery',
+                                  style: TextStyle(color: Colors.green),
+                                ),
+                                Text(
+                                  'New season',
+                                  style: TextStyle(color: Colors.white60),
+                                ),
+                                Text(
+                                  'Most searched',
+                                  style: TextStyle(color: Colors.white60),
+                                ),
+                                Text(
+                                  'Most selled',
+                                  style: TextStyle(color: Colors.white60),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ],
                     ),
