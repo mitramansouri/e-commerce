@@ -1,8 +1,5 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -13,35 +10,22 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   final List<String> items = [
-    'Item1',
-    'Item2',
-    'Item3',
-    'Item4',
-    'Item5',
-    'Item6',
-    'Item7',
-    'Item8',
+    'Every week',
+    'Every 2 weeks',
+    'Every 4 weeks',
+    'Every month',
   ];
-  String? selectedValue;
-
+  String? selectedValue = 'Every 4 weeks';
+  int quantity = 1;
+  String _selectedSubscription = 'one-time';
+  String _selectedDelivery = '4 weeks';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          // menu ( it has to be modified later )
-          Container(
-            color: Colors.white,
-            height: 60.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                //icons
-                InkWell(
-                  child: Row(
-                    children: [
-                      //candleaf icon
-                      SvgPicture.asset(
+      appBar: AppBar(
+        title: Row(
+          children: [
+            SvgPicture.asset(
                         'assets/icons/candleaf-icon.svg',
                         width: 40.0, // Set the desired width
                         height: 40.0, // Set the desired height
@@ -55,319 +39,358 @@ class _ProductScreenState extends State<ProductScreen> {
                         width: 20.0, // Set the desired width
                         height: 20.0, // Set the desired height
                       ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                PopupMenuButton<String>(
+                  onSelected: (value) {
+                    // Handle navigation based on the selected value
+                    if (value == 'New Season') {
+                      // Navigate to New Season page
+                    } else if (value == 'Most Searched') {
+                      // Navigate to Most Searched page
+                    } else if (value == 'Most Sold') {
+                      // Navigate to Most Sold page
+                    }
+                  },
+                  itemBuilder: (BuildContext context) {
+                    return [
+                      const PopupMenuItem(
+                        value: 'New Season',
+                        child: Text('New Season'),
+                  ),
+                      const PopupMenuItem(
+                        value: 'Most Searched',
+                        child: Text('Most Searched'),
+                      ),
+                      const PopupMenuItem(
+                        value: 'Most Sold',
+                        child: Text('Most Sold'),
+                      ),
+                    ];
+                  },
+                  child: const Row(
+                    children: [
+                      Text(
+                        'Discovery',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                        ),
+                      ),
+                      Icon(Icons.keyboard_arrow_down)
                     ],
                   ),
                 ),
-                // menu items
-                Row(
-                  children: [
-                    // discover drop down
-                    DropdownButtonHideUnderline(
-                      child: DropdownButton2<String>(
-                        isExpanded: true,
-                        hint: const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                'Discovery',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                const SizedBox(width: 20),
+                NavBarItem('About', () {
+                  // Navigate to About page
+                }),
+                const SizedBox(width: 20),
+                NavBarItem('Contact us', () {
+                  // Navigate to Contact us page
+                }),
+              ],
+            ),
+            const Spacer(),
+            const Spacer(),
+            IconButton(
+              icon: const Icon(Icons.person),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: const Icon(Icons.shopping_cart),
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(
+              height: 40.0,
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  width: 40.0,
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/pictures/product_single.png',
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        height: MediaQuery.of(context).size.width * 0.2,
+                        fit: BoxFit.cover,
+                      ),
+                      const SizedBox(height: 30.0),
+                      const Text(
+                        'All hand-made with natural soy wax, Candleaf is made for your pleasure moments.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 30.0),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(Icons.local_shipping),
+                          Text(
+                            ' FREE SHIPPING',
+                            style: TextStyle(color: Colors.green),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 150.0),
+                Expanded(
+                  flex: 3,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Spiced Mint Candleaf®',
+                        style: TextStyle(
+                            fontSize: 24.0, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 10.0),
+                      Row(
+                        children: [
+                          const Text(
+                            '\$9.99',
+                            style:
+                                TextStyle(fontSize: 24.0, color: Colors.green),
+                          ),
+                          // insert the code here
+                          
+                        ],
+                      ),
+                      const SizedBox(height: 10.0),
+                      const Text(
+                        'Quantity',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.remove),
+                            onPressed: () {
+                              setState(() {
+                                if (quantity > 1) quantity--;
+                              });
+                            },
+                          ),
+                          Text('$quantity'),
+                          IconButton(
+                            icon: const Icon(Icons.add),
+                            onPressed: () {
+                              setState(() {
+                                quantity++;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10.0),
+                      const Text(
+                        'Subscribe and delivery every',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      DropdownButton<String>(
+                        value: selectedValue,
                         items: items
-                            .map((String item) => DropdownMenuItem<String>(
+                            .map((item) => DropdownMenuItem<String>(
                                   value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+                                  child: Text(item),
                                 ))
                             .toList(),
-                        value: selectedValue,
-                        onChanged: (String? value) {
+                        onChanged: (value) {
                           setState(() {
                             selectedValue = value;
                           });
                         },
-                        buttonStyleData: const ButtonStyleData(
-                          width: 120,
-                          padding: EdgeInsets.only(left: 14, right: 14),
-                        ),
-                        iconStyleData: const IconStyleData(
-                          icon: Icon(
-                            Icons.keyboard_arrow_down_sharp,
-                          ),
-                          iconSize: 20,
-                          iconEnabledColor: Colors.black,
-                          iconDisabledColor: Colors.grey,
-                        ),
-                        dropdownStyleData: DropdownStyleData(
-                          maxHeight: 200,
-                          width: 200,
-                          offset: const Offset(-20, 0),
-                          scrollbarTheme: ScrollbarThemeData(
-                            radius: const Radius.circular(40),
-                            thickness: MaterialStateProperty.all<double>(6),
-                            thumbVisibility:
-                                MaterialStateProperty.all<bool>(true),
-                          ),
-                        ),
-                        menuItemStyleData: const MenuItemStyleData(
-                          height: 40,
-                          padding: EdgeInsets.only(left: 14, right: 14),
+                      ),
+                      const SizedBox(height: 20.0),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text('+ Add to cart'),
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          backgroundColor: Colors.green,
                         ),
                       ),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'About',
-                        style: TextStyle(color: Colors.black),
+                      const SizedBox(height: 20.0),
+                      Container(
+                        padding: const EdgeInsets.all(8.0),
+                        color: Colors.grey.shade200,
+                        child: const Text(
+                          'Wax: Top grade Soy wax that delivers a smoke less, consistent burn\n'
+                          'Fragrance: Premium quality ingredients with natural essential oils\n'
+                          'Burning Time: 70-75 hours\n'
+                          'Dimension: 10cm x 5cm\n'
+                          'Weight: 400g',
+                          style: TextStyle(fontSize: 14.0),
+                        ),
                       ),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Contact Us',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    //Profile Icon
-                    IconButton(
-                      icon: const Icon(Icons.person_2_outlined),
-                      tooltip: 'See Profile',
-                      onPressed: () {
-                        setState(() {});
-                      },
-                    ),
-                    //shopping cart Icon
-                    IconButton(
-                      icon: const Icon(Icons.shopping_cart_outlined),
-                      tooltip: 'See cart',
-                      onPressed: () {
-                        setState(() {});
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
-          ),
-          // body
-          Expanded(
-            child: SingleChildScrollView(
-              child: Container(
-                color: Colors.amber,
-                child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IntrinsicHeight(
-                      child: Row(
+            // footer
+            Container(
+              height: MediaQuery.of(context).size.height * 0.3,
+              width: MediaQuery.of(context).size.width,
+              color: Colors.black87,
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  const Divider(),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(
-                            width: 50.0,
-                          ),
-                          // picture
-                          Column(
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Image(
-                                image: const AssetImage(
-                                    'assets/pictures/product_single.png'),
-                                width: MediaQuery.of(context).size.width * 0.4,
-                                height: MediaQuery.of(context).size.width * 0.4,
+                              //candleaf icon
+                              const SizedBox(
+                                width: 20.0,
+                              ),
+                              SvgPicture.asset(
+                                'assets/icons/candleaf-icon.svg',
+                                width: 40.0, // Set the desired width
+                                height: 40.0, // Set the desired height
                               ),
                               const SizedBox(
-                                width: 200.0,
-                                child: Text(
-                                  'All hand-made with natural soy wax, Candleaf is made for your pleasure moments. ',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
+                                width: 10,
                               ),
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              const Row(
-                                children: [
-                                  Icon(Icons.fire_truck),
-                                  Text(
-                                    ' FREE SHIPPING',
-                                    style: TextStyle(color: Colors.green),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 20.0,
+                              // candleaf name icon
+                              SvgPicture.asset(
+                                'assets/icons/wordmark.svg',
+                                width: 20.0, // Set the desired width
+                                height: 20.0, // Set the desired height
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            width: 20.0,
-                          ),
-                          // spice mint column
-                          Expanded(
-                            child: Container(
-                              color: Colors.black,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Spiced Mint Candleaf®',
-                                    style: TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
+                          Container(
+                            width: 300,
+                            padding: const EdgeInsets.all(20.0),
+                            child: const Text(
+                              'Your natural candle made for your home and for your wellness.',
+                              style: TextStyle(color: Colors.white60),
                             ),
                           ),
                         ],
                       ),
-                    ),
-
-                    // footer
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.black87,
-                      child: Column(
+                      const Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(
-                            height: 20.0,
+                          Text(
+                            'Discovery',
+                            style: TextStyle(color: Colors.green),
                           ),
-                          const Divider(),
-                          const SizedBox(
-                            height: 20.0,
+                          Text(
+                            'New season',
+                            style: TextStyle(color: Colors.white60),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      //candleaf icon
-                                      const SizedBox(
-                                        width: 20.0,
-                                      ),
-                                      SvgPicture.asset(
-                                        'assets/icons/candleaf-icon.svg',
-                                        width: 40.0, // Set the desired width
-                                        height: 40.0, // Set the desired height
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      // candleaf name icon
-                                      SvgPicture.asset(
-                                        'assets/icons/wordmark.svg',
-                                        width: 20.0, // Set the desired width
-                                        height: 20.0, // Set the desired height
-                                      ),
-                                    ],
-                                  ),
-                                  Container(
-                                    width: 300,
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: const Text(
-                                      'Your natural candle made for your home and for your wellness.',
-                                      style: TextStyle(color: Colors.white60),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Discovery',
-                                    style: TextStyle(color: Colors.green),
-                                  ),
-                                  Text(
-                                    'New season',
-                                    style: TextStyle(color: Colors.white60),
-                                  ),
-                                  Text(
-                                    'Most searched',
-                                    style: TextStyle(color: Colors.white60),
-                                  ),
-                                  Text(
-                                    'Most selled',
-                                    style: TextStyle(color: Colors.white60),
-                                  ),
-                                ],
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      'Discovery',
-                                      style: TextStyle(color: Colors.green),
-                                    ),
-                                    Text(
-                                      'New season',
-                                      style: TextStyle(color: Colors.white60),
-                                    ),
-                                    Text(
-                                      'Most searched',
-                                      style: TextStyle(color: Colors.white60),
-                                    ),
-                                    Text(
-                                      'Most selled',
-                                      style: TextStyle(color: Colors.white60),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const Column(
-                                children: [
-                                  Text(
-                                    'Discovery',
-                                    style: TextStyle(color: Colors.green),
-                                  ),
-                                  Text(
-                                    'New season',
-                                    style: TextStyle(color: Colors.white60),
-                                  ),
-                                  Text(
-                                    'Most searched',
-                                    style: TextStyle(color: Colors.white60),
-                                  ),
-                                  Text(
-                                    'Most selled',
-                                    style: TextStyle(color: Colors.white60),
-                                  ),
-                                ],
-                              ),
-                            ],
+                          Text(
+                            'Most searched',
+                            style: TextStyle(color: Colors.white60),
+                          ),
+                          Text(
+                            'Most selled',
+                            style: TextStyle(color: Colors.white60),
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Discovery',
+                              style: TextStyle(color: Colors.green),
+                            ),
+                            Text(
+                              'New season',
+                              style: TextStyle(color: Colors.white60),
+                            ),
+                            Text(
+                              'Most searched',
+                              style: TextStyle(color: Colors.white60),
+                            ),
+                            Text(
+                              'Most selled',
+                              style: TextStyle(color: Colors.white60),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Column(
+                        children: [
+                          Text(
+                            'Discovery',
+                            style: TextStyle(color: Colors.green),
+                          ),
+                          Text(
+                            'New season',
+                            style: TextStyle(color: Colors.white60),
+                          ),
+                          Text(
+                            'Most searched',
+                            style: TextStyle(color: Colors.white60),
+                          ),
+                          Text(
+                            'Most selled',
+                            style: TextStyle(color: Colors.white60),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class NavBarItem extends StatelessWidget {
+  final String title;
+  final VoidCallback onTap;
+
+  NavBarItem(this.title, this.onTap);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 18,
+        ),
       ),
     );
   }
