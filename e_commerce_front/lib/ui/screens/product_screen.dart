@@ -18,7 +18,8 @@ class _ProductScreenState extends State<ProductScreen> {
   String? selectedValue = 'Every 4 weeks';
   int quantity = 1;
   String _selectedSubscription = 'one-time';
-  String _selectedDelivery = '4 weeks';
+  String _selectedDelivery = 'Every 4 weeks';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,19 +27,19 @@ class _ProductScreenState extends State<ProductScreen> {
         title: Row(
           children: [
             SvgPicture.asset(
-                        'assets/icons/candleaf-icon.svg',
-                        width: 40.0, // Set the desired width
-                        height: 40.0, // Set the desired height
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      // candleaf name icon
-                      SvgPicture.asset(
-                        'assets/icons/wordmark.svg',
-                        width: 20.0, // Set the desired width
-                        height: 20.0, // Set the desired height
-                      ),
+              'assets/icons/candleaf-icon.svg',
+              width: 40.0, // Set the desired width
+              height: 40.0, // Set the desired height
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            // candleaf name icon
+            SvgPicture.asset(
+              'assets/icons/wordmark.svg',
+              width: 20.0, // Set the desired width
+              height: 20.0, // Set the desired height
+            ),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +60,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       const PopupMenuItem(
                         value: 'New Season',
                         child: Text('New Season'),
-                  ),
+                      ),
                       const PopupMenuItem(
                         value: 'Most Searched',
                         child: Text('Most Searched'),
@@ -170,7 +171,93 @@ class _ProductScreenState extends State<ProductScreen> {
                                 TextStyle(fontSize: 24.0, color: Colors.green),
                           ),
                           // insert the code here
-                          
+                          const SizedBox(height: 10.0),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Radio<String>(
+                                    value: 'one-time',
+                                    groupValue: _selectedSubscription,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _selectedSubscription = value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text('One time purchase'),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Radio<String>(
+                                    value: 'subscribe',
+                                    groupValue: _selectedSubscription,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _selectedSubscription = value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text('Subscribe and delivery every'),
+                                  const SizedBox(width: 10),
+                                  DropdownButton<String>(
+                                    value: _selectedDelivery,
+                                    onChanged: (String? newValue) {
+                                      setState(() {
+                                        _selectedDelivery = newValue!;
+                                      });
+                                    },
+                                    items: <String>[
+                                      'Every week',
+                                      'Every 2 weeks',
+                                      'Every 4 weeks',
+                                      'Every month'
+                                    ].map<DropdownMenuItem<String>>(
+                                        (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          if (_selectedSubscription == 'subscribe')
+                            Container(
+                              margin: EdgeInsets.only(left: 50),
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Subscribe now and get the 10% of discount on every recurring order. The discount will be applied at checkout.',
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      // Handle "See details" tap
+                                    },
+                                    child: Text(
+                                      'See details',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.green,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          // end of inserted code
                         ],
                       ),
                       const SizedBox(height: 10.0),
