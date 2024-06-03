@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -28,17 +28,14 @@ class _ProductScreenState extends State<ProductScreen> {
           children: [
             SvgPicture.asset(
               'assets/icons/candleaf-icon.svg',
-              width: 40.0, // Set the desired width
-              height: 40.0, // Set the desired height
+              width: 40.0,
+              height: 40.0,
             ),
-            const SizedBox(
-              width: 10,
-            ),
-            // candleaf name icon
+            const SizedBox(width: 10),
             SvgPicture.asset(
               'assets/icons/wordmark.svg',
-              width: 20.0, // Set the desired width
-              height: 20.0, // Set the desired height
+              width: 100.0,
+              height: 20.0,
             ),
             const Spacer(),
             Row(
@@ -111,15 +108,11 @@ class _ProductScreenState extends State<ProductScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(
-              height: 40.0,
-            ),
+            const SizedBox(height: 40.0),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  width: 40.0,
-                ),
+                const SizedBox(width: 40.0),
                 Expanded(
                   flex: 2,
                   child: Column(
@@ -164,100 +157,107 @@ class _ProductScreenState extends State<ProductScreen> {
                       ),
                       const SizedBox(height: 10.0),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
                             '\$9.99',
-                            style:
-                                TextStyle(fontSize: 24.0, color: Colors.green),
+                            style: TextStyle(
+                                fontSize: 24.0,
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
                           ),
-                          // insert the code here
-                          const SizedBox(height: 10.0),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Radio<String>(
-                                    value: 'one-time',
-                                    groupValue: _selectedSubscription,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _selectedSubscription = value!;
-                                      });
-                                    },
-                                  ),
-                                  const Text('One time purchase'),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Radio<String>(
-                                    value: 'subscribe',
-                                    groupValue: _selectedSubscription,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _selectedSubscription = value!;
-                                      });
-                                    },
-                                  ),
-                                  const Text('Subscribe and delivery every'),
-                                  const SizedBox(width: 10),
-                                  DropdownButton<String>(
-                                    value: _selectedDelivery,
-                                    onChanged: (String? newValue) {
-                                      setState(() {
-                                        _selectedDelivery = newValue!;
-                                      });
-                                    },
-                                    items: <String>[
-                                      'Every week',
-                                      'Every 2 weeks',
-                                      'Every 4 weeks',
-                                      'Every month'
-                                    ].map<DropdownMenuItem<String>>(
-                                        (String value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Text(value),
-                                      );
-                                    }).toList(),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          if (_selectedSubscription == 'subscribe')
-                            Container(
-                              margin: EdgeInsets.only(left: 50),
-                              padding: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Subscribe now and get the 10% of discount on every recurring order. The discount will be applied at checkout.',
-                                    style: TextStyle(fontSize: 14),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      // Handle "See details" tap
-                                    },
-                                    child: Text(
-                                      'See details',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.green,
-                                        decoration: TextDecoration.underline,
-                                      ),
+                          const SizedBox(width: 100.0),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Radio<String>(
+                                      activeColor: Colors.green,
+                                      value: 'one-time',
+                                      groupValue: _selectedSubscription,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _selectedSubscription = value!;
+                                        });
+                                      },
+                                    ),
+                                    const Text('One time purchase'),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Radio<String>(
+                                      activeColor: Colors.green,
+                                      value: 'subscribe',
+                                      groupValue: _selectedSubscription,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _selectedSubscription = value!;
+                                        });
+                                      },
+                                    ),
+                                    const Text('Subscribe and delivery every'),
+                                    const SizedBox(width: 10),
+                                    DropdownButton<String>(
+                                      value: _selectedDelivery,
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          _selectedDelivery = newValue!;
+                                        });
+                                      },
+                                      items: <String>[
+                                        'Every week',
+                                        'Every 2 weeks',
+                                        'Every 4 weeks',
+                                        'Every month'
+                                      ].map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ],
+                                ),
+                                if (_selectedSubscription == 'subscribe')
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 10),
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          'Subscribe now and get the 10% of discount on every recurring order. The discount will be applied at checkout.',
+                                          style: TextStyle(fontSize: 14),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            // Handle "See details" tap
+                                          },
+                                          child: const Text(
+                                            'See details',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.green,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
+                              ],
                             ),
-                          // end of inserted code
+                          ),
                         ],
                       ),
                       const SizedBox(height: 10.0),
@@ -265,66 +265,104 @@ class _ProductScreenState extends State<ProductScreen> {
                         'Quantity',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Row(
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.remove),
-                            onPressed: () {
-                              setState(() {
-                                if (quantity > 1) quantity--;
-                              });
-                            },
-                          ),
-                          Text('$quantity'),
-                          IconButton(
-                            icon: const Icon(Icons.add),
-                            onPressed: () {
-                              setState(() {
-                                quantity++;
-                              });
-                            },
-                          ),
-                        ],
+                      const SizedBox(height: 10.0),
+                      Container(
+                        width: 100,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.green),
+                          borderRadius: BorderRadius.circular(1.0),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.remove),
+                              onPressed: () {
+                                setState(() {
+                                  if (quantity > 1) quantity--;
+                                });
+                              },
+                            ),
+                            Text('$quantity'),
+                            IconButton(
+                              icon: const Icon(Icons.add),
+                              onPressed: () {
+                                setState(() {
+                                  quantity++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                       const SizedBox(height: 10.0),
-                      const Text(
-                        'Subscribe and delivery every',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      DropdownButton<String>(
-                        value: selectedValue,
-                        items: items
-                            .map((item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(item),
-                                ))
-                            .toList(),
-                        onChanged: (value) {
-                          setState(() {
-                            selectedValue = value;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 20.0),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text('+ Add to cart'),
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 16.0),
-                          backgroundColor: Colors.green,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              // Button press action
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 16.0, horizontal: 24.0),
+                              backgroundColor: Colors.green,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.zero,
+                              ),
+                            ),
+                            icon: const Icon(Icons.add_shopping_cart_outlined,
+                                color: Colors.white),
+                            label: const Text(
+                              '+ Add to cart',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 20.0),
                       Container(
                         padding: const EdgeInsets.all(8.0),
-                        color: Colors.grey.shade200,
-                        child: const Text(
-                          'Wax: Top grade Soy wax that delivers a smoke less, consistent burn\n'
-                          'Fragrance: Premium quality ingredients with natural essential oils\n'
-                          'Burning Time: 70-75 hours\n'
-                          'Dimension: 10cm x 5cm\n'
-                          'Weight: 400g',
-                          style: TextStyle(fontSize: 14.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.black, width: 1.0),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: RichText(
+                          text: const TextSpan(
+                            style: TextStyle(fontSize: 14.0, color: Colors.black),
+                            children: [
+                              TextSpan(
+                                text: 'Wax: ',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(
+                                  text:
+                                      'Top grade Soy wax that delivers a smokeless, consistent burn\n'),
+                              TextSpan(
+                                text: 'Fragrance: ',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(
+                                  text:
+                                      'Premium quality ingredients with natural essential oils\n'),
+                              TextSpan(
+                                text: 'Burning Time: ',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(text: '70-75 hours\n'),
+                              TextSpan(
+                                text: 'Dimension: ',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(text: '10cm x 5cm\n'),
+                              TextSpan(
+                                text: 'Weight: ',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(text: '400g'),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -334,18 +372,14 @@ class _ProductScreenState extends State<ProductScreen> {
             ),
             // footer
             Container(
-              height: MediaQuery.of(context).size.height * 0.3,
+              height: MediaQuery.of(context).size.height * 0.4, // Make the footer height responsive
               width: MediaQuery.of(context).size.width,
               color: Colors.black87,
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  const Divider(),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
+                  const SizedBox(height: 20.0),
+                  const Divider(color: Colors.white),
+                  const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -355,23 +389,17 @@ class _ProductScreenState extends State<ProductScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              //candleaf icon
-                              const SizedBox(
-                                width: 20.0,
-                              ),
+                              const SizedBox(width: 20.0),
                               SvgPicture.asset(
                                 'assets/icons/candleaf-icon.svg',
-                                width: 40.0, // Set the desired width
-                                height: 40.0, // Set the desired height
+                                width: 40.0,
+                                height: 40.0,
                               ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              // candleaf name icon
+                              const SizedBox(width: 10),
                               SvgPicture.asset(
                                 'assets/icons/wordmark.svg',
-                                width: 20.0, // Set the desired width
-                                height: 20.0, // Set the desired height
+                                width: 100.0,
+                                height: 20.0,
                               ),
                             ],
                           ),
@@ -386,7 +414,6 @@ class _ProductScreenState extends State<ProductScreen> {
                         ],
                       ),
                       const Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -407,45 +434,44 @@ class _ProductScreenState extends State<ProductScreen> {
                           ),
                         ],
                       ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Text(
-                              'Discovery',
-                              style: TextStyle(color: Colors.green),
-                            ),
-                            Text(
-                              'New season',
-                              style: TextStyle(color: Colors.white60),
-                            ),
-                            Text(
-                              'Most searched',
-                              style: TextStyle(color: Colors.white60),
-                            ),
-                            Text(
-                              'Most selled',
-                              style: TextStyle(color: Colors.white60),
-                            ),
-                          ],
-                        ),
-                      ),
                       const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Discovery',
+                            'About',
                             style: TextStyle(color: Colors.green),
                           ),
                           Text(
-                            'New season',
+                            'Company',
                             style: TextStyle(color: Colors.white60),
                           ),
                           Text(
-                            'Most searched',
+                            'Team',
                             style: TextStyle(color: Colors.white60),
                           ),
                           Text(
-                            'Most selled',
+                            'Careers',
+                            style: TextStyle(color: Colors.white60),
+                          ),
+                        ],
+                      ),
+                      const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Help',
+                            style: TextStyle(color: Colors.green),
+                          ),
+                          Text(
+                            'Contact us',
+                            style: TextStyle(color: Colors.white60),
+                          ),
+                          Text(
+                            'FAQs',
+                            style: TextStyle(color: Colors.white60),
+                          ),
+                          Text(
+                            'Shipping',
                             style: TextStyle(color: Colors.white60),
                           ),
                         ],
