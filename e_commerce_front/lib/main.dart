@@ -1,3 +1,4 @@
+import 'package:e_commerce_front/ui/screens/authentication_screen.dart';
 import 'package:e_commerce_front/ui/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ProductScreen(),
+      home: AuthenticationScreen(),
     );
   }
 }
