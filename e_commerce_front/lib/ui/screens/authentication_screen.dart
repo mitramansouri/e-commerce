@@ -6,21 +6,24 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: AuthenticationScreen(),
     );
   }
 }
 
 class AuthenticationScreen extends StatefulWidget {
+  const AuthenticationScreen({super.key});
+
   @override
   _AuthenticationScreenState createState() => _AuthenticationScreenState();
 }
 
 class _AuthenticationScreenState extends State<AuthenticationScreen> {
-  
   // Methods to handle button clicks
   void _handleCartClick() {
     print("Cart clicked");
@@ -55,7 +58,8 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
             child: Container(
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.only(left: 165.0, right: 100.0, top: 20.0),
+                padding:
+                    const EdgeInsets.only(left: 165.0, right: 100.0, top: 20.0),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +91,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
                               onTap: _handleCartClick,
-                              child: Text(
+                              child: const Text(
                                 "Cart",
                                 style: TextStyle(
                                   color: Color(0xFF56B280),
@@ -96,38 +100,38 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                               ),
                             ),
                           ),
-                          Text(
+                          const Text(
                             ">",
                             style: TextStyle(
                               color: Color(0xFF616161),
                             ),
                           ),
-                          Text(
+                          const Text(
                             "Details",
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
+                          const Text(
                             ">",
                             style: TextStyle(
                               color: Color(0xFF616161),
                             ),
                           ),
-                          Text(
+                          const Text(
                             "Shipping",
                             style: TextStyle(
                               color: Color(0xFF616161),
                             ),
                           ),
-                          Text(
+                          const Text(
                             ">",
                             style: TextStyle(
                               color: Color(0xFF616161),
                             ),
                           ),
-                          Text(
+                          const Text(
                             "Payment",
                             style: TextStyle(
                               color: Color(0xFF616161),
@@ -141,7 +145,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               'Contact',
                               style: TextStyle(
                                 fontSize: 20,
@@ -150,7 +154,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                             ),
                             Row(
                               children: [
-                                Text(
+                                const Text(
                                   'Do you have an account? ',
                                   style: TextStyle(
                                     color: Color(0xFF616161),
@@ -161,7 +165,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                                   cursor: SystemMouseCursors.click,
                                   child: GestureDetector(
                                     onTap: _handleLoginClick,
-                                    child: Text(
+                                    child: const Text(
                                       'Login',
                                       style: TextStyle(
                                         color: Color(0xFF56B280),
@@ -177,7 +181,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                       ),
                       const SizedBox(height: 5.0),
                       // Email input field
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Email or mobile phone number',
@@ -186,7 +190,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                       // Checkbox for newsletter subscription
                       CheckboxListTile(
                         contentPadding: EdgeInsets.zero,
-                        title: Text(
+                        title: const Text(
                           "Add me to Candleaf newsletter for a 10% discount",
                           style: TextStyle(fontSize: 14.0),
                         ),
@@ -200,7 +204,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                       ),
                       const SizedBox(height: 20.0),
                       // Shipping address section
-                      Text(
+                      const Text(
                         'Shipping Address',
                         style: TextStyle(
                           fontSize: 20,
@@ -209,7 +213,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                       ),
                       const SizedBox(height: 10.0),
                       // Name input fields
-                      Row(
+                      const Row(
                         children: [
                           Expanded(
                             child: TextField(
@@ -219,7 +223,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 10.0),
+                          SizedBox(width: 10.0),
                           Expanded(
                             child: TextField(
                               decoration: InputDecoration(
@@ -232,7 +236,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                       ),
                       const SizedBox(height: 10.0),
                       // Address input field
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Address and number',
@@ -240,7 +244,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                       ),
                       const SizedBox(height: 10.0),
                       // Shipping note input field
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Shipping note (optional)',
@@ -250,7 +254,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                       // City, postal code, and province input fields
                       Row(
                         children: [
-                          Expanded(
+                          const Expanded(
                             child: TextField(
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
@@ -259,7 +263,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                             ),
                           ),
                           const SizedBox(width: 10.0),
-                          Expanded(
+                          const Expanded(
                             child: TextField(
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
@@ -270,7 +274,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                           const SizedBox(width: 10.0),
                           Expanded(
                             child: DropdownButtonFormField<String>(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Province',
                               ),
@@ -293,12 +297,19 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                       const SizedBox(height: 10.0),
                       // Country/Region dropdown field
                       DropdownButtonFormField<String>(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Country/Region',
                         ),
                         value: _selectedCountry,
-                        items: ['Iran', 'Croatia', 'Germany', 'Canada', 'Palisrael', 'Australia']
+                        items: [
+                          'Iran',
+                          'Croatia',
+                          'Germany',
+                          'Canada',
+                          'Palisrael',
+                          'Australia'
+                        ]
                             .map((country) => DropdownMenuItem<String>(
                                   value: country,
                                   child: Text(country),
@@ -313,7 +324,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                       // Checkbox to save information for future checkout
                       CheckboxListTile(
                         contentPadding: EdgeInsets.zero,
-                        title: Text(
+                        title: const Text(
                           "Save this information for a future fast checkout",
                           style: TextStyle(fontSize: 14.0),
                         ),
@@ -332,7 +343,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                         children: [
                           TextButton(
                             onPressed: _handleCartClick,
-                            child: Text(
+                            child: const Text(
                               'Back to Cart',
                               style: TextStyle(
                                 color: Color(0xFF56B280),
@@ -344,15 +355,15 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                           ),
                           ElevatedButton(
                             onPressed: _handleGoToShipping,
-                            child: Text(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF56B280),
+                            ),
+                            child: const Text(
                               'Go to Shipping',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16.0,
                               ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFF56B280),
                             ),
                           ),
                         ],
@@ -368,9 +379,11 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
           Expanded(
             flex: 1,
             child: Container(
-              color: Color.fromARGB(255, 242, 242, 242),
+              color: const Color.fromARGB(255, 242, 242, 242),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 65.0, vertical: 60.0).copyWith(right: 165.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 65.0, vertical: 60.0)
+                        .copyWith(right: 165.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -389,12 +402,12 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                               top: 0,
                               right: 0,
                               child: Container(
-                                padding: EdgeInsets.all(6.0),
-                                decoration: BoxDecoration(
+                                padding: const EdgeInsets.all(6.0),
+                                decoration: const BoxDecoration(
                                   color: Colors.green,
                                   shape: BoxShape.circle,
                                 ),
-                                child: Text(
+                                child: const Text(
                                   '1',
                                   style: TextStyle(
                                     color: Colors.white,
@@ -407,8 +420,8 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                         ),
                         const SizedBox(width: 20.0),
                         // Product title and price
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 20.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -420,8 +433,8 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const SizedBox(height: 5.0),
-                              const Text(
+                              SizedBox(height: 5.0),
+                              Text(
                                 '\$ 9.99',
                                 style: TextStyle(
                                   fontSize: 21.0,
@@ -441,7 +454,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                     // Coupon code section
                     Row(
                       children: [
-                        Expanded(
+                        const Expanded(
                           child: TextField(
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
@@ -453,10 +466,11 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                         ElevatedButton(
                           onPressed: _addCodeClicked,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFFA8A8A8),
-                            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+                            backgroundColor: const Color(0xFFA8A8A8),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 15.0),
                           ),
-                          child: Text(
+                          child: const Text(
                             'Add code',
                             style: TextStyle(
                               color: Colors.white,
@@ -470,7 +484,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                     Divider(color: Colors.grey.withOpacity(0.5)),
                     const SizedBox(height: 20.0),
                     // Subtotal and shipping information
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
@@ -490,7 +504,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                       ],
                     ),
                     const SizedBox(height: 10.0),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
@@ -503,18 +517,18 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                         Text(
                           'Calculated at the next step',
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Color(0xFF616161),
                             fontSize: 14.0,
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 20.0),
-                    
+
                     Divider(color: Colors.grey.withOpacity(0.5)),
                     const SizedBox(height: 20.0),
-                    
-                    Row(
+
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
@@ -528,7 +542,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                           '\$ 9.99',
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 16.0,
+                            fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
