@@ -13,14 +13,12 @@
     margin-top: 20px;
 }
 .popular hr{
-    margin-bottom: 20px;
     width: 200px;
     height: 6px;
     border-radius: 10px;
     background: black;
 }
 .popular-item{
-    margin-top: 50px;
     display: flex;
     gap: 30px;
 }
