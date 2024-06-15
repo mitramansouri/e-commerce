@@ -1,5 +1,4 @@
-import 'package:e_commerce_front/ui/screens/authentication_screen.dart';
-import 'package:e_commerce_front/ui/screens/product_screen.dart';
+
 import 'package:e_commerce_front/ui/screens/shipping_screen.dart';
 import 'package:flutter/material.dart';
 
